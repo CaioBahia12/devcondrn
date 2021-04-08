@@ -10,18 +10,17 @@ export default () => {
                     <InputLogin 
                         placeholder = "Digite seu usuário"
                     />
-                    <InputLogin 
+                    <InputLogin
                         placeholder = "Digite sua senha"
                         secureTextEntry = {true}
                         ref={ref => ref && ref.setNativeProps({ style: { fontFamily: 'Arial' } })}
                         value = {password}
                         onChangeText = {(p) => setPassword(p)}
-                    />
+                     />
                     <LoginButton>
                         <LoginButtonText>Entrar</LoginButtonText>
                     </LoginButton>
                 </Container>
-
             </Page>
     );
 }

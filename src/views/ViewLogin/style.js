@@ -29,7 +29,6 @@ export const Logo = () => {
 
 export const InputLogin = styled.TextInput`
     width: 90%;
-    height: 50px;
     background-color: #fff;
     border-radius: 7px;
     margin-bottom: 15px;
@@ -37,6 +36,7 @@ export const InputLogin = styled.TextInput`
     color: #222;
     padding: 10px;
 `
+
 
 export const LoginButton = styled.TouchableOpacity`
     width: 90%;
@@ -50,7 +50,3 @@ export const LoginButtonText = styled.Text`
     font-size: 18px;
     color: #fff;
 `
-
-
-
-
