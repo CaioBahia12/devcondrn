@@ -15,6 +15,7 @@ export const Container = styled.SafeAreaView`
     align-items: center;
     justify-content: center;
     width: 90%;
+    padding-bottom: 20px;
 `
 
 export const Logo = () => {
@@ -45,8 +46,19 @@ export const LoginButton = styled.TouchableOpacity`
     align-items: center;
     justify-content: center;
     border-radius: 7px;
+   
 `
 export const LoginButtonText = styled.Text`
     font-size: 18px;
     color: #fff;
+`
+
+export const RegistrationButton = styled.TouchableOpacity`
+
+`
+export const RegistrationButtonText = styled.Text`
+    margin-top: 10px;
+    font-size: 15px;
+    color: #000;
+    text-shadow: 1px 1px 1px #fff;
 `
