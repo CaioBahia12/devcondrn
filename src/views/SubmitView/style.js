@@ -21,11 +21,11 @@ export const Page = styled.KeyboardAvoidingView`
 `
 export const Input = styled.TextInput`
     width: 90%;
-    height: 50px;
     background-color: #fff;
-    font-size: 18px;
     border-radius: 7px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    font-size: 17px;
+    color: #222;
     padding: 10px;
 `
 
@@ -43,6 +43,7 @@ export const SubmitButton = styled.TouchableOpacity`
 export const SubmitButtonText = styled.Text`
     font-size: 18px;
     color: #fff;
+    font-family: "Comics-San";
 `
 
 export const BackButton = styled.TouchableOpacity`
