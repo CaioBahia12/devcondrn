@@ -1,4 +1,15 @@
+import React from 'react';
 import styled from 'styled-components/native';
+import { Image } from 'react-native';
+
+export const LogoImage = () => {
+    return(
+        <Image 
+            source = {require('../LoginScreen/images/logo.png')}
+            style = {{width: 270,height: 120,marginTop: 20}}
+        />
+    );
+}
 
 export const HeaderText = styled.Text`
     font-size: 25px;
@@ -11,6 +22,7 @@ export const Container = styled.SafeAreaView`
     align-items: center;
     justify-content: center;
     width: 90%;
+    margin-bottom: 150px;
 `
 
 export const Page = styled.KeyboardAvoidingView`
