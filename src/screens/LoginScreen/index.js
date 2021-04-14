@@ -5,13 +5,12 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default () => {
-   
     const navigation = useNavigation();
-
     const [password,setPassword] = useState('');
     const [login, setLogin] = useState('');
     const [valueLogin, setValueLogin] = useState('');
     const [valuePassword, setValuePassword] = useState('');
+    const [listUsers, setListUsers] = useState('');
     const efetuarLogin = () => {
         if(login == '' || password == ''){
             Alert.alert(
@@ -22,7 +21,8 @@ export default () => {
                 }]
             )
         }else{
-           if(login == valueLogin && password == valuePassword){
+            console.log(listUsers);
+           if(listUsers.some(user => user.login == login && user.password == password)){
                navigation.navigate('Main');
            }else{
                Alert.alert(
@@ -40,19 +40,26 @@ export default () => {
     const handleRegistrationClick = () => {
         navigation.navigate('Submit');
     }
-   const _retrieveData = async () => {
+   const getItems = async () => {
         try {
-          const value = await AsyncStorage.getItem('@login');
-          const value2 = await AsyncStorage.getItem('@password');
-          setValueLogin(value)
-          setValuePassword(value2)
+         const items = await AsyncStorage.getItem('@users');
+         console.log('--------------')
+         console.log(items);
+         setListUsers(JSON.parse(items));
+         console.log('--------------')
+
         } catch (error) {
-          
+          alert('Deu algum erro');
         }
       };
+
     useEffect(() => {
-        _retrieveData();
-    },[])
+        const unsubscribe = navigation.addListener('focus', () => {
+            getItems();
+            console.log('Atualizando todo mundo')
+          });
+          return unsubscribe;
+    },[navigation])
     return(
             <Page>
                 <Logo />

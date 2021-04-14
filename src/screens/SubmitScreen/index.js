@@ -3,17 +3,20 @@ import { Container, Page, Input, SubmitButton, SubmitButtonText, HeaderText, Bac
 import { useNavigation } from '@react-navigation/native';
 import { Alert, DevSettings } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import UsersList from './UsersList';
 
 export default () => {
     const [userName, setUserName] = useState('');
     const [cpf, setCpf] = useState('');
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const [usersList, setUsersList] = useState([]);
 
     const navigation = useNavigation();
     function handleBackButton () {
         navigation.goBack();
     }
+
 
     const handleSubmitButton = async () => {
         if(userName == '' || cpf == '' || login == '' || password == ''){
@@ -27,12 +30,16 @@ export default () => {
                 ]
             )
         }else{
-            alert('Usuário cadastrado com sucesso :)')
-            await AsyncStorage.setItem('@name',userName);
-            await AsyncStorage.setItem('@cpf',cpf);
-            await AsyncStorage.setItem('@login',login);
-            await AsyncStorage.setItem('@password',password);
-            DevSettings.reload();
+            const newUsersList = [...usersList,{userName: userName, cpf: cpf, login: login, password: password}];
+            setUsersList(newUsersList);
+            try {
+                await AsyncStorage.setItem('@users',JSON.stringify(newUsersList));
+                alert('Usuário cadastrado com sucesso :)')
+                const users = await AsyncStorage.getItem('@users');
+                console.log(users);
+            } catch (error) {
+                alert('Algo deu errado!')
+            }
         }
     }
     return(
