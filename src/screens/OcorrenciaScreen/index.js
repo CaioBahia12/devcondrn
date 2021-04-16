@@ -7,6 +7,8 @@ import AddItemArea from './components/AddItemArea';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import ListaOcorrencias from '@react-native-community/async-storage';
+import { SwipeListView } from 'react-native-swipe-list-view';
+import ListaOcorrenciaSwipe from './components/ListaOcorrenciaSwipe';
 
 export default () => {
     const [ocorrencias, setOcorrencias] = useState([]);
@@ -46,13 +48,34 @@ export default () => {
       useEffect(() => {
           getItems();
       },[])
+
+      const deleteItem = async (index,item) => {
+        let newItems = [...ocorrencias];
+        newItems = newItems.filter((it,i) => {
+            if(i != index){
+                return true;
+            }else{
+                return false;
+            }
+        })
+        setOcorrencias(newItems);
+        try {
+            await ListaOcorrencias.setItem('@Ocorrencias',JSON.stringify(newItems));
+        } catch (error) {
+            alert('Algo deu errado')
+        }
+      }
+
     return(
         <Page>
             <AddItemArea onAdd = {addNewOcorrencia} />
-            <Container 
+            <SwipeListView
                 data = {ocorrencias}
                 renderItem = {({item}) => <ListaOcorrencia data = {item}/> }
                 keyExtractor = {(item) => item.id}
+                renderHiddenItem = {({item, index}) => <ListaOcorrenciaSwipe onDelete = {() => deleteItem(index,item)} /> }
+                leftOpenValue = {50}
+                disableLeftSwipe = {true}
             />
         </Page>
        

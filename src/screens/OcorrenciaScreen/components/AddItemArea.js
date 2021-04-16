@@ -7,6 +7,7 @@ const AddItemArea = styled.View`
     padding: 10px;
 `
 const AddItemInput = styled.TextInput`
+    padding: 10px;
     background-color: #FFF;
     font-size: 15px;
     height: 50px;
