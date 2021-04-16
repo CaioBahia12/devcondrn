@@ -37,6 +37,10 @@ export default () => {
                 alert('Usuário cadastrado com sucesso :)')
                 const users = await AsyncStorage.getItem('@users');
                 console.log(users);
+                setUserName('');
+                setCpf('');
+                setLogin('');
+                setPassword('');
             } catch (error) {
                 alert('Algo deu errado!')
             }

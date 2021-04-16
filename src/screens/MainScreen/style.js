@@ -5,6 +5,10 @@ import styled from 'styled-components/native';
 export const Page = styled.SafeAreaView`
     flex: 1;
     background-color: #b1eaf7;
+`
+
+export const Container = styled.View`
+    flex: 1;
     flex-direction: row;
     align-items: flex-end;
     justify-content: center;
@@ -15,21 +19,60 @@ export const Text = styled.Text`
 `
 
 export const Square = styled.TouchableOpacity`
-    width: 100px;
-    height: 100px;
-    background-color: white;
+    width: 80px;
+    height: 80px;
+    background-color: #fff;
     border-radius: 10px;
     margin: 10px;
     align-items: center;
     justify-content: center;
 `
 
-export const SquareIcon = () => {
+export const SquareIconLostFound = () => {
     return(
-        <View>
+        <View style = {{alignItems: "center"}}>
             <Image 
-                source = {require('./images/icon_Home.png')}
+                source = {require('./images/icon_Lost_Found.png')}
+                style = {{width: 80, height: 80}}
             />
         </View>
+    );
+}
+
+export const SquareIconOcorrencia = () => {
+    return(
+        <Image 
+            source = {require('./images/icon_Ocorrencia.png')}
+            style = {{width: 80, height: 80}}
+        />
+    );
+}
+
+export const SquareIconMural = () => {
+    return(
+        <Image 
+            source = {require('./images/icon_Mural.png')}
+            style = {{width: 80, height: 80}}
+        />
+    );
+}
+
+export const Logo = () => {
+    return(
+        <View style = {{alignItems: "center", marginTop: 20}}>
+            <Image 
+            source = {require('../LoginScreen/images/logo.png')}
+            />
+        </View>
+      
+    );
+}
+
+export const SquareIconReservation = () => {
+    return(
+        <Image 
+            source = {require('./images/icon_Reservation.png')}
+            style = {{width: 80, height: 80}}
+        />
     );
 }

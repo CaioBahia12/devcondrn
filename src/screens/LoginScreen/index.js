@@ -33,7 +33,7 @@ export default () => {
                             text: "Tudo bem"
                         }
                    ]
-               )
+               );
            }
         }
     }
@@ -43,10 +43,10 @@ export default () => {
    const getItems = async () => {
         try {
          const items = await AsyncStorage.getItem('@users');
-         console.log('--------------')
+         console.log('--------------');
          console.log(items);
          setListUsers(JSON.parse(items));
-         console.log('--------------')
+         console.log('--------------');
 
         } catch (error) {
           alert('Deu algum erro');
@@ -56,14 +56,13 @@ export default () => {
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
             getItems();
-            console.log('Atualizando todo mundo')
+            console.log('Atualizando todo mundo');
           });
           return unsubscribe;
     },[navigation])
     return(
             <Page>
                 <Logo />
-            
                 <Container>
                     <InputLogin 
                         placeholder = "Digite seu usuário"
