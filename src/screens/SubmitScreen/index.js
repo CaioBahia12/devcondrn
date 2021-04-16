@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Page, Input, SubmitButton, SubmitButtonText, HeaderText, BackButton, BackButtonText, LogoImage } from './style';
 import { useNavigation } from '@react-navigation/native';
-import { Alert, DevSettings } from 'react-native';
+import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import UsersList from './UsersList';
 import { v4 as uuidv4 } from 'uuid';
-import ListaOcorrencias from '@react-native-community/async-storage';
 
 export default () => {
     const [userName, setUserName] = useState('');
@@ -48,6 +46,26 @@ export default () => {
             }
         }
     }
+    const getUsers = async () => {
+        try {
+         const users = await AsyncStorage.getItem('@users');
+         console.log('--------------');
+         console.log(users);
+         setUsersList(JSON.parse(users));
+         console.log('--------------');
+
+        } catch (error) {
+          alert('Deu algum erro');
+        }
+      };
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            getUsers();
+            console.log('Atualizando todo mundo');
+          });
+          return unsubscribe;
+    },[navigation])
     return(
         <Page>
             <LogoImage />
