@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Alert, DevSettings } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import UsersList from './UsersList';
+import { v4 as uuidv4 } from 'uuid';
+import ListaOcorrencias from '@react-native-community/async-storage';
 
 export default () => {
     const [userName, setUserName] = useState('');
@@ -30,7 +32,7 @@ export default () => {
                 ]
             )
         }else{
-            const newUsersList = [...usersList,{userName: userName, cpf: cpf, login: login, password: password}];
+            const newUsersList = [...usersList,{id: uuidv4(), userName: userName, cpf: cpf, login: login, password: password}];
             setUsersList(newUsersList);
             try {
                 await AsyncStorage.setItem('@users',JSON.stringify(newUsersList));
