@@ -4,7 +4,6 @@ import LoginScreen from '../screens/LoginScreen';
 import SubmitScreen from '../screens/SubmitScreen';
 import MainScreen from '../screens/MainScreen';
 import OcorrenciaScreen from '../screens/OcorrenciaScreen';
-
 const MainStack = createStackNavigator();
 
 export default () => {

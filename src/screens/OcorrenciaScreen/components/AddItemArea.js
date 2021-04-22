@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, View } from 'react-native';
 import styled from 'styled-components/native';
 
 const AddItemArea = styled.View`
@@ -18,6 +18,20 @@ const HeaderText = styled.Text`
     align-self: center;
     margin-bottom: 10px;
 `
+
+const ObsText = styled.Text`
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+`
+
+export const Obs = () => {
+    return(
+        <View style = {{width: "95%", height: 70, borderRadius: 40, backgroundColor: "#fff", padding: 10, marginBottom: 10, justifyContent: "center", alignItems: "center"}}>
+            <ObsText>Arraste alguma ocorrência para o lado direito para ver mais opções :)</ObsText>
+        </View>
+    );
+}
 export default (props) => {
     const [ocorrencia, setOcorrencia] = useState('');
     const handleSubmit = () => {
@@ -37,6 +51,7 @@ export default (props) => {
     return(
         <AddItemArea>
             <HeaderText>Livro de Ocorrências</HeaderText>
+            <Obs />
             <AddItemInput 
                 placeholder = "Digite uma nova ocorrência"
                 value = {ocorrencia}
